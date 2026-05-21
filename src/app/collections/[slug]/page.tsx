@@ -4,6 +4,8 @@ import { COLLECTION_PRODUCTS_QUERY } from '@/lib/shopify-queries';
 import type { CollectionProductsResponse } from '@/lib/shopify-types';
 import { notFound } from 'next/navigation';
 
+const IMAGES = '/images';
+
 const placeholderProducts = Array.from({ length: 8 }, (_, i) => ({
   id: `placeholder-${i}`,
   title: `Product ${i + 1}`,
@@ -17,7 +19,7 @@ const placeholderProducts = Array.from({ length: 8 }, (_, i) => ({
   images: {
     edges: [{
       node: {
-        url: `https://picsum.photos/seed/col${i}/600/800`,
+        url: `${IMAGES}/product${i}.svg`,
         altText: `Product ${i + 1}`,
         width: 600,
         height: 800,

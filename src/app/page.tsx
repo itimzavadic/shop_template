@@ -5,6 +5,8 @@ import { shopifyFetch } from '@/lib/shopify';
 import { PRODUCTS_QUERY, COLLECTION_PRODUCTS_QUERY } from '@/lib/shopify-queries';
 import type { ProductsResponse, CollectionProductsResponse } from '@/lib/shopify-types';
 
+const IMAGES = '/images';
+
 // Эти функции будут работать, когда Shopify API настроен.
 // Пока используем placeholder данные для демонстрации.
 const placeholderProducts = Array.from({ length: 8 }, (_, i) => ({
@@ -20,7 +22,7 @@ const placeholderProducts = Array.from({ length: 8 }, (_, i) => ({
   images: {
     edges: [{
       node: {
-        url: `https://picsum.photos/seed/product${i}/600/800`,
+        url: `${IMAGES}/product${i}.svg`,
         altText: `Product ${i + 1}`,
         width: 600,
         height: 800,
@@ -60,7 +62,7 @@ export default async function HomePage() {
         subtitle="Fashion, Footwear & Accessories"
         ctaText="SHOP NOW"
         ctaLink="/collections/all"
-        backgroundImage="https://picsum.photos/seed/hero/1920/1080"
+        backgroundImage={`${IMAGES}/hero.jpg`}
         layout="fullWidth"
       />
 
@@ -68,7 +70,7 @@ export default async function HomePage() {
       <EditorialBlock
         title="Winter '28"
         description="Introducing our curated Winter '28 collection. A return to essentials — designed for the season ahead with timeless silhouettes and premium materials."
-        image="https://picsum.photos/seed/winter28/800/1000"
+        image={`${IMAGES}/winter28.svg`}
         ctaText="SHOP NOW"
         ctaLink="/collections/winter-28"
         imagePosition="left"
@@ -106,7 +108,7 @@ export default async function HomePage() {
       <EditorialBlock
         title="Larriet"
         description="A return to essentials. Designed in Melbourne and built to layer, last and live in; we're pleased to welcome the latest collection from Larriet."
-        image="https://picsum.photos/seed/larriet/800/1000"
+        image={`${IMAGES}/larriet.svg`}
         ctaText="SHOP NOW"
         ctaLink="/collections/larriet"
         imagePosition="right"

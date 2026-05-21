@@ -5,6 +5,8 @@ import { PRODUCT_BY_HANDLE_QUERY } from '@/lib/shopify-queries';
 import type { ProductByHandleResponse } from '@/lib/shopify-types';
 import { notFound } from 'next/navigation';
 
+const IMAGES = '/images';
+
 // Placeholder data for demo
 const placeholderProduct = {
   id: 'placeholder-1',
@@ -19,8 +21,8 @@ const placeholderProduct = {
   },
   images: {
     edges: [
-      { node: { url: 'https://picsum.photos/seed/product1/600/800', altText: 'Product', width: 600, height: 800 } },
-      { node: { url: 'https://picsum.photos/seed/product2/600/800', altText: 'Product', width: 600, height: 800 } },
+      { node: { url: `${IMAGES}/product1.svg`, altText: 'Product', width: 600, height: 800 } },
+      { node: { url: `${IMAGES}/product2.svg`, altText: 'Product', width: 600, height: 800 } },
     ],
   },
   vendor: 'Brand',
@@ -98,34 +100,25 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </span>
               )}
               <p className="text-xs text-muted mb-1">{product.vendor}</p>
-              <h1 className="text-sm font-medium text-foreground tracking-wide">
+              <h1 className="text-xl font-medium text-foreground tracking-wide">
                 {product.title}
               </h1>
-              <p className="text-xs text-muted mt-2">
-                ${parseFloat(price.amount).toFixed(2)} {price.currencyCode}
+              <p className="text-sm font-medium text-foreground mt-2">
+                ${parseFloat(price.amount).toFixed(2)}
               </p>
             </div>
 
-            {/* Description */}
-            {product.description && (
-              <div className="mb-6">
-                <p className="text-xs text-muted leading-5">
-                  {product.description}
-                </p>
-              </div>
-            )}
-
-            {/* Options (Size, Color) */}
+            {/* Options */}
             {product.options?.map((option) => (
               <div key={option.id} className="mb-4">
-                <h3 className="text-xs font-medium text-foreground mb-2 uppercase tracking-wide">
+                <p className="text-xs font-medium text-foreground mb-2 uppercase tracking-wide">
                   {option.name}
-                </h3>
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {option.values.map((value) => (
                     <button
                       key={value}
-                      className="text-xs text-muted border border-border px-4 py-2 hover:border-foreground hover:text-foreground transition-colors"
+                      className="text-xs border border-border px-4 py-2 hover:bg-foreground hover:text-background transition-colors"
                     >
                       {value}
                     </button>
@@ -134,13 +127,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
             ))}
 
-            {/* Add to Cart Button */}
-            <button
-              disabled={!product.availableForSale}
-              className="w-full bg-foreground text-background text-xs tracking-wide font-medium py-4 uppercase hover:bg-foreground/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-6"
-            >
-              {product.availableForSale ? 'Add to Cart' : 'Sold Out'}
+            {/* Add to Cart */}
+            <button className="w-full bg-foreground text-background text-xs tracking-wide font-medium py-3 hover:opacity-90 transition-opacity uppercase mt-6">
+              Add to Cart
             </button>
+
+            {/* Description */}
+            {product.descriptionHtml ? (
+              <div
+                className="mt-8 text-xs text-muted leading-5 space-y-3"
+                dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+              />
+            ) : (
+              <p className="mt-8 text-xs text-muted leading-5">
+                {product.description}
+              </p>
+            )}
           </div>
         </div>
       </div>
