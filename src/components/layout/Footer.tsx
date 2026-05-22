@@ -13,22 +13,20 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Stores */}
           <div>
             <h3 className="text-xs tracking-wide font-medium text-foreground mb-3">
-              ССЫЛКИ
+              НАШИ МАГАЗИНЫ
             </h3>
             <ul className="space-y-2">
-              {['О нас', 'Контакты', 'FAQ', 'Доставка и возврат'].map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
-                    className="text-xs text-muted hover:text-foreground transition-colors"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li className="text-xs text-muted leading-5">
+                <span className="font-medium text-foreground">Светлогорск</span>
+                <br />ТЦ «Берёзки»
+              </li>
+              <li className="text-xs text-muted leading-5">
+                <span className="font-medium text-foreground">Мозырь</span>
+                <br />ТЦ «Катапульта»
+              </li>
             </ul>
           </div>
 

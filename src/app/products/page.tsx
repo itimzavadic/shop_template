@@ -1,41 +1,9 @@
 import { ProductGrid } from '@/components/ui/ProductGrid';
-import { shopifyFetch } from '@/lib/shopify';
-import { PRODUCTS_QUERY } from '@/lib/shopify-queries';
-import type { ProductsResponse } from '@/lib/shopify-types';
+import { generateProducts } from '@/lib/product-data';
 
-const placeholderProducts = Array.from({ length: 12 }, (_, i) => ({
-  id: `placeholder-${i}`,
-  title: `Product ${i + 1}`,
-  handle: `product-${i + 1}`,
-  description: '',
-  availableForSale: true,
-  priceRange: {
-    minVariantPrice: { amount: `${((Math.random() * 200 + 50) * 3.3).toFixed(2)}`, currencyCode: 'BYN' },
-    maxVariantPrice: { amount: `${((Math.random() * 200 + 50) * 3.3).toFixed(2)}`, currencyCode: 'BYN' },
-  },
-  images: {
-    edges: [{
-      node: {
-        url: `https://picsum.photos/seed/all${i}/600/800`,
-        altText: `Product ${i + 1}`,
-        width: 600,
-        height: 800,
-      },
-    }],
-  },
-  vendor: ['MHL', 'Metalwood', 'ERL', 'Larriet', 'Cherrys Los Angeles'][i % 5],
-  tags: i < 3 ? ['NEW'] : [],
-}));
+const products = generateProducts(12);
 
-export default async function ProductsPage() {
-  const result = await shopifyFetch<ProductsResponse>({
-    query: PRODUCTS_QUERY,
-    variables: { first: 12 },
-    tags: ['products'],
-  });
-
-  const products = result?.body?.products?.edges.map((e) => e.node) ?? placeholderProducts;
-
+export default function ProductsPage() {
   return (
     <div className="w-full">
       <div className="mx-auto px-6 py-8">

@@ -1,45 +1,6 @@
 import { ProductGrid } from '@/components/ui/ProductGrid';
-import { shopifyFetch } from '@/lib/shopify';
-import { COLLECTION_PRODUCTS_QUERY } from '@/lib/shopify-queries';
-import type { CollectionProductsResponse } from '@/lib/shopify-types';
+import { generateProducts } from '@/lib/product-data';
 import { notFound } from 'next/navigation';
-
-const IMAGES = '/images';
-
-const productImages = [
-  'benjamin-r-zNPlKIWCoZc-unsplash.jpg',
-  'brock-wegner-7yONARoUsbY-unsplash.jpg',
-  'kasongo-bulobo-GKmk8qYlJBc-unsplash.jpg',
-  'khalid-boutchich-KSazmALqLVg-unsplash.jpg',
-  'mohamad-khosravi-7I0umiKzwgc-unsplash.jpg',
-  'mohamad-khosravi-WO0cn-xjX4k-unsplash.jpg',
-  'otabek-xatipov-gtqZEFBJeq8-unsplash.jpg',
-  'pexels-subhansaad-3613388.jpg',
-];
-
-const placeholderProducts = Array.from({ length: 8 }, (_, i) => ({
-  id: `placeholder-${i}`,
-  title: `Product ${i + 1}`,
-  handle: `product-${i + 1}`,
-  description: '',
-  availableForSale: true,
-  priceRange: {
-    minVariantPrice: { amount: `${((Math.random() * 200 + 50) * 3.3).toFixed(2)}`, currencyCode: 'BYN' },
-    maxVariantPrice: { amount: `${((Math.random() * 200 + 50) * 3.3).toFixed(2)}`, currencyCode: 'BYN' },
-  },
-  images: {
-    edges: [{
-      node: {
-        url: `${IMAGES}/${productImages[i]}`,
-        altText: `Product ${i + 1}`,
-        width: 600,
-        height: 800,
-      },
-    }],
-  },
-  vendor: ['MHL', 'Metalwood', 'ERL', 'Larriet'][i % 4],
-  tags: [],
-}));
 
 interface CollectionPageProps {
   params: Promise<{ slug: string }>;
@@ -48,17 +9,13 @@ interface CollectionPageProps {
 export default async function CollectionPage({ params }: CollectionPageProps) {
   const { slug } = await params;
 
-  // Пытаемся получить данные из Shopify
-  const result = await shopifyFetch<CollectionProductsResponse>({
-    query: COLLECTION_PRODUCTS_QUERY,
-    variables: { handle: slug, first: 12 },
-    tags: [`collection-${slug}`],
-  });
+  // For now, use generated products for all collections
+  const products = generateProducts(8);
+  const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
-  const collection = result?.body?.collectionByHandle;
-
-  const products = collection?.products?.edges.map((e) => e.node) ?? placeholderProducts;
-  const title = collection?.title ?? slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+  if (!products) {
+    notFound();
+  }
 
   return (
     <div className="w-full">
@@ -66,12 +23,6 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         <h1 className="text-sm tracking-wide font-medium text-foreground mb-1">
           {title}
         </h1>
-        {collection?.description && (
-          <p className="text-xs text-muted mb-8 max-w-lg">
-            {collection.description}
-          </p>
-        )}
-
         <ProductGrid products={products} columns={4} />
       </div>
     </div>

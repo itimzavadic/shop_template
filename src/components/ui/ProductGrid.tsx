@@ -1,20 +1,12 @@
-import type { ShopifyProduct } from '@/lib/shopify-types';
+import type { ExtendedProduct } from '@/lib/product-data';
 import { ProductCard } from './ProductCard';
 
 interface ProductGridProps {
-  products: ShopifyProduct[];
+  products: ExtendedProduct[];
   columns?: 2 | 3 | 4;
   title?: string;
 }
 
-/**
- * ProductGrid — адаптивная сетка товаров (DESIGN.MD §4)
- *
- * - 2 колонки на мобильных, 4 на десктопе (по умолчанию)
- * - Возможность задать 2 или 3 колонки
- * - Опциональный заголовок секции
- * - Горизонтальный gap: --grid-gap (.5rem), вертикальный: --grid-gap-y (3rem)
- */
 export function ProductGrid({ products, columns = 4, title }: ProductGridProps) {
   const gridCols = {
     2: 'grid-cols-2',
@@ -25,7 +17,7 @@ export function ProductGrid({ products, columns = 4, title }: ProductGridProps) 
   return (
     <section className="w-full py-8">
       {title && (
-        <h2 className="text-2xs tracking-wide font-medium text-muted uppercase mb-6 px-6">
+        <h2 className="text-2xs tracking-wide font-medium text-muted uppercase mb-6">
           {title}
         </h2>
       )}
