@@ -9,13 +9,13 @@ export const siteSettings = defineType({
       name: 'title',
       title: 'Site Title',
       type: 'string',
-      initialValue: 'ABOVE THE CLOUDS',
+      initialValue: 'UNIVERSE',
     }),
     defineField({
       name: 'description',
       title: 'Site Description',
       type: 'text',
-      initialValue: 'Globally Curated Fashion, Footwear & Accessories',
+      initialValue: 'ОДЕЖДА • ТРЕНДЫ • СТИЛЬ • МАНЕРА',
     }),
     defineField({
       name: 'logo',

@@ -9,7 +9,7 @@ export function Header() {
           href="/"
           className="text-sm tracking-wide font-medium text-foreground"
         >
-          ABOVE THE CLOUDS
+          UNIVERSE
         </Link>
 
         {/* Navigation */}
@@ -18,19 +18,19 @@ export function Header() {
             href="/menu"
             className="text-sm tracking-wide text-muted hover:text-foreground transition-colors"
           >
-            MENU
+            МЕНЮ
           </Link>
           <Link
             href="/search"
             className="text-sm tracking-wide text-muted hover:text-foreground transition-colors"
           >
-            SEARCH
+            ПОИСК
           </Link>
           <Link
             href="/cart"
             className="text-sm tracking-wide text-muted hover:text-foreground transition-colors"
           >
-            CART
+            КОРЗИНА
           </Link>
         </nav>
       </div>

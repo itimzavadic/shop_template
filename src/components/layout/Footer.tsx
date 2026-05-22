@@ -6,20 +6,20 @@ export function Footer() {
           {/* Brand */}
           <div>
             <h3 className="text-sm tracking-wide font-medium text-foreground mb-3">
-              ABOVE THE CLOUDS
+              UNIVERSE
             </h3>
             <p className="text-xs text-muted leading-5">
-              Globally Curated Fashion, Footwear & Accessories
+              ОДЕЖДА • ТРЕНДЫ • СТИЛЬ • МАНЕРА
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="text-xs tracking-wide font-medium text-foreground mb-3">
-              LINKS
+              ССЫЛКИ
             </h3>
             <ul className="space-y-2">
-              {['About', 'Contact', 'FAQ', 'Shipping & Returns'].map((link) => (
+              {['О нас', 'Контакты', 'FAQ', 'Доставка и возврат'].map((link) => (
                 <li key={link}>
                   <a
                     href="#"
@@ -35,7 +35,7 @@ export function Footer() {
           {/* Social */}
           <div>
             <h3 className="text-xs tracking-wide font-medium text-foreground mb-3">
-              FOLLOW US
+              МЫ В СОЦСЕТЯХ
             </h3>
             <ul className="space-y-2">
               {['Instagram', 'Twitter', 'Pinterest'].map((link) => (
@@ -54,7 +54,7 @@ export function Footer() {
 
         <div className="mt-8 pt-6 border-t border-border">
           <p className="text-2xs text-muted text-center">
-            &copy; {new Date().getFullYear()} ABOVE THE CLOUDS. All rights reserved.
+            &copy; {new Date().getFullYear()} UNIVERSE. Все права защищены.
           </p>
         </div>
       </div>

@@ -6,6 +6,17 @@ import { notFound } from 'next/navigation';
 
 const IMAGES = '/images';
 
+const productImages = [
+  'benjamin-r-zNPlKIWCoZc-unsplash.jpg',
+  'brock-wegner-7yONARoUsbY-unsplash.jpg',
+  'kasongo-bulobo-GKmk8qYlJBc-unsplash.jpg',
+  'khalid-boutchich-KSazmALqLVg-unsplash.jpg',
+  'mohamad-khosravi-7I0umiKzwgc-unsplash.jpg',
+  'mohamad-khosravi-WO0cn-xjX4k-unsplash.jpg',
+  'otabek-xatipov-gtqZEFBJeq8-unsplash.jpg',
+  'pexels-subhansaad-3613388.jpg',
+];
+
 const placeholderProducts = Array.from({ length: 8 }, (_, i) => ({
   id: `placeholder-${i}`,
   title: `Product ${i + 1}`,
@@ -13,13 +24,13 @@ const placeholderProducts = Array.from({ length: 8 }, (_, i) => ({
   description: '',
   availableForSale: true,
   priceRange: {
-    minVariantPrice: { amount: `${(Math.random() * 200 + 50).toFixed(2)}`, currencyCode: 'USD' },
-    maxVariantPrice: { amount: `${(Math.random() * 200 + 50).toFixed(2)}`, currencyCode: 'USD' },
+    minVariantPrice: { amount: `${((Math.random() * 200 + 50) * 3.3).toFixed(2)}`, currencyCode: 'BYN' },
+    maxVariantPrice: { amount: `${((Math.random() * 200 + 50) * 3.3).toFixed(2)}`, currencyCode: 'BYN' },
   },
   images: {
     edges: [{
       node: {
-        url: `${IMAGES}/product${i}.svg`,
+        url: `${IMAGES}/${productImages[i]}`,
         altText: `Product ${i + 1}`,
         width: 600,
         height: 800,

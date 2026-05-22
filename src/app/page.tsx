@@ -7,6 +7,17 @@ import type { ProductsResponse, CollectionProductsResponse } from '@/lib/shopify
 
 const IMAGES = '/images';
 
+const productImages = [
+  'benjamin-r-zNPlKIWCoZc-unsplash.jpg',
+  'brock-wegner-7yONARoUsbY-unsplash.jpg',
+  'kasongo-bulobo-GKmk8qYlJBc-unsplash.jpg',
+  'khalid-boutchich-KSazmALqLVg-unsplash.jpg',
+  'mohamad-khosravi-7I0umiKzwgc-unsplash.jpg',
+  'mohamad-khosravi-WO0cn-xjX4k-unsplash.jpg',
+  'otabek-xatipov-gtqZEFBJeq8-unsplash.jpg',
+  'pexels-subhansaad-3613388.jpg',
+];
+
 // Эти функции будут работать, когда Shopify API настроен.
 // Пока используем placeholder данные для демонстрации.
 const placeholderProducts = Array.from({ length: 8 }, (_, i) => ({
@@ -16,13 +27,13 @@ const placeholderProducts = Array.from({ length: 8 }, (_, i) => ({
   description: '',
   availableForSale: true,
   priceRange: {
-    minVariantPrice: { amount: `${(Math.random() * 200 + 50).toFixed(2)}`, currencyCode: 'USD' },
-    maxVariantPrice: { amount: `${(Math.random() * 200 + 50).toFixed(2)}`, currencyCode: 'USD' },
+    minVariantPrice: { amount: `${((Math.random() * 200 + 50) * 3.3).toFixed(2)}`, currencyCode: 'BYN' },
+    maxVariantPrice: { amount: `${((Math.random() * 200 + 50) * 3.3).toFixed(2)}`, currencyCode: 'BYN' },
   },
   images: {
     edges: [{
       node: {
-        url: `${IMAGES}/product${i}.svg`,
+        url: `${IMAGES}/${productImages[i]}`,
         altText: `Product ${i + 1}`,
         width: 600,
         height: 800,
@@ -58,20 +69,20 @@ export default async function HomePage() {
     <div className="w-full">
       {/* Hero Section — full-bleed, DESIGN.MD §8 */}
       <HeroSection
-        title="Globally Curated"
-        subtitle="Fashion, Footwear & Accessories"
-        ctaText="SHOP NOW"
+        title="UNIVERSE"
+        subtitle="ОДЕЖДА • ТРЕНДЫ • СТИЛЬ • МАНЕРА"
+        ctaText="Посмотреть"
         ctaLink="/collections/all"
         backgroundImage={`${IMAGES}/hero.jpg`}
         layout="fullWidth"
       />
 
-      {/* Editorial Block — Winter '28, DESIGN.MD §8, §9 */}
+      {/* Editorial Block — Summer '26 */}
       <EditorialBlock
-        title="Winter '28"
-        description="Introducing our curated Winter '28 collection. A return to essentials — designed for the season ahead with timeless silhouettes and premium materials."
-        image={`${IMAGES}/winter28.svg`}
-        ctaText="SHOP NOW"
+        title="Лето '26"
+        description="Встречайте летнюю коллекцию 2026 — свежие образы для жарких дней и тёплых вечеров."
+        image={`${IMAGES}/joshua-alejo-5AOI-34uBo8-unsplash.jpg`}
+        ctaText="Посмотреть"
         ctaLink="/collections/winter-28"
         imagePosition="left"
         backgroundColor="bg-secondary"
@@ -81,7 +92,7 @@ export default async function HomePage() {
       <div className="px-6">
         <ProductGrid
           products={footwear}
-          title="Latest Footwear"
+          title="ТРЕНДЫ"
           columns={4}
         />
       </div>
@@ -90,7 +101,7 @@ export default async function HomePage() {
       <div className="px-6">
         <ProductGrid
           products={arrivals}
-          title="Latest Arrivals"
+          title="Новинки"
           columns={4}
         />
       </div>
@@ -99,17 +110,17 @@ export default async function HomePage() {
       <div className="px-6">
         <ProductGrid
           products={staffSelects}
-          title="Staff Selects"
+          title="Рекомендации UNIVERSE"
           columns={3}
         />
       </div>
 
-      {/* Editorial Block — Larriet brand story, DESIGN.MD §11 */}
+      {/* Editorial Block — Styling "под ключ" */}
       <EditorialBlock
-        title="Larriet"
-        description="A return to essentials. Designed in Melbourne and built to layer, last and live in; we're pleased to welcome the latest collection from Larriet."
-        image={`${IMAGES}/larriet.svg`}
-        ctaText="SHOP NOW"
+        title="Образ под ключ"
+        description="Стильный образ с головы до пят — подберём всё необходимое для любого повода."
+        image={`${IMAGES}/mei-ling-mirow-Kbl1RYTPIDA-unsplash.jpg`}
+        ctaText="Посмотреть"
         ctaLink="/collections/larriet"
         imagePosition="right"
         backgroundColor="bg-background"

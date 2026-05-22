@@ -16,13 +16,13 @@ const placeholderProduct = {
   descriptionHtml: '<p>Product description goes here.</p>',
   availableForSale: true,
   priceRange: {
-    minVariantPrice: { amount: '110.00', currencyCode: 'USD' },
-    maxVariantPrice: { amount: '110.00', currencyCode: 'USD' },
+    minVariantPrice: { amount: '363.00', currencyCode: 'BYN' },
+    maxVariantPrice: { amount: '363.00', currencyCode: 'BYN' },
   },
   images: {
     edges: [
-      { node: { url: `${IMAGES}/product1.svg`, altText: 'Product', width: 600, height: 800 } },
-      { node: { url: `${IMAGES}/product2.svg`, altText: 'Product', width: 600, height: 800 } },
+      { node: { url: `${IMAGES}/brock-wegner-7yONARoUsbY-unsplash.jpg`, altText: 'Product', width: 600, height: 800 } },
+      { node: { url: `${IMAGES}/kasongo-bulobo-GKmk8qYlJBc-unsplash.jpg`, altText: 'Product', width: 600, height: 800 } },
     ],
   },
   vendor: 'Brand',
@@ -33,7 +33,7 @@ const placeholderProduct = {
   ],
   variants: {
     edges: [
-      { node: { id: 'var-1', title: 'S / Black', availableForSale: true, selectedOptions: [{ name: 'Size', value: 'S' }, { name: 'Color', value: 'Black' }], price: { amount: '110.00', currencyCode: 'USD' } } },
+      { node: { id: 'var-1', title: 'S / Black', availableForSale: true, selectedOptions: [{ name: 'Size', value: 'S' }, { name: 'Color', value: 'Black' }], price: { amount: '363.00', currencyCode: 'BYN' } } },
     ],
   },
 };
@@ -68,7 +68,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         {/* Breadcrumb */}
         <nav className="mb-6">
           <Link href="/" className="text-xs text-muted hover:text-foreground transition-colors">
-            Home
+            Главная
           </Link>
           <span className="text-xs text-muted mx-2">/</span>
           <span className="text-xs text-muted">{product.title}</span>
@@ -96,7 +96,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="mb-6">
               {isNew && (
                 <span className="text-2xs tracking-wide font-medium text-muted uppercase mb-2 block">
-                  NEW
+                  НОВИНКА
                 </span>
               )}
               <p className="text-xs text-muted mb-1">{product.vendor}</p>
@@ -104,7 +104,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 {product.title}
               </h1>
               <p className="text-sm font-medium text-foreground mt-2">
-                ${parseFloat(price.amount).toFixed(2)}
+                {(parseFloat(price.amount) * 3.3).toFixed(2)} Br
               </p>
             </div>
 
@@ -112,7 +112,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {product.options?.map((option) => (
               <div key={option.id} className="mb-4">
                 <p className="text-xs font-medium text-foreground mb-2 uppercase tracking-wide">
-                  {option.name}
+                  {option.name === 'Size' ? 'Размер' : option.name === 'Color' ? 'Цвет' : option.name}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {option.values.map((value) => (
@@ -129,7 +129,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             {/* Add to Cart */}
             <button className="w-full bg-foreground text-background text-xs tracking-wide font-medium py-3 hover:opacity-90 transition-opacity uppercase mt-6">
-              Add to Cart
+              В корзину
             </button>
 
             {/* Description */}

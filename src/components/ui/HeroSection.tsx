@@ -21,7 +21,7 @@ interface HeroSectionProps {
 export function HeroSection({
   title,
   subtitle,
-  ctaText = 'SHOP NOW',
+  ctaText = 'Посмотреть',
   ctaLink = '/collections/all',
   backgroundImage,
   layout = 'fullWidth',
@@ -40,7 +40,7 @@ export function HeroSection({
         />
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 text-center px-6">
-          <h1 className="text-4xl md:text-6xl font-medium text-white tracking-wide mb-4">
+          <h1 className="text-[clamp(4rem,15vw,35rem)] font-bold text-white tracking-wider leading-none">
             {title}
           </h1>
           {subtitle && (

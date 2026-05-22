@@ -33,7 +33,7 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
         {isNew && (
           <span className="absolute top-2 left-2 bg-foreground text-background text-2xs tracking-wide px-2 py-1 font-medium uppercase">
-            NEW
+            НОВИНКА
           </span>
         )}
       </div>
@@ -47,7 +47,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.vendor}
         </p>
         <p className="text-xs font-medium text-foreground leading-4 mt-1">
-          ${parseFloat(price.amount).toFixed(2)}
+          {(parseFloat(price.amount) * 3.3).toFixed(2)} Br
         </p>
       </div>
     </Link>

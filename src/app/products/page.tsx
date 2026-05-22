@@ -10,8 +10,8 @@ const placeholderProducts = Array.from({ length: 12 }, (_, i) => ({
   description: '',
   availableForSale: true,
   priceRange: {
-    minVariantPrice: { amount: `${(Math.random() * 200 + 50).toFixed(2)}`, currencyCode: 'USD' },
-    maxVariantPrice: { amount: `${(Math.random() * 200 + 50).toFixed(2)}`, currencyCode: 'USD' },
+    minVariantPrice: { amount: `${((Math.random() * 200 + 50) * 3.3).toFixed(2)}`, currencyCode: 'BYN' },
+    maxVariantPrice: { amount: `${((Math.random() * 200 + 50) * 3.3).toFixed(2)}`, currencyCode: 'BYN' },
   },
   images: {
     edges: [{
@@ -40,7 +40,7 @@ export default async function ProductsPage() {
     <div className="w-full">
       <div className="mx-auto px-6 py-8">
         <h1 className="text-sm tracking-wide font-medium text-foreground mb-8">
-          All Products
+          Все товары
         </h1>
         <ProductGrid products={products} columns={4} />
       </div>

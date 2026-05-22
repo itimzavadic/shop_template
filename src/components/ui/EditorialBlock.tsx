@@ -25,7 +25,7 @@ export function EditorialBlock({
   description,
   image,
   imagePosition = 'left',
-  ctaText = 'SHOP NOW',
+  ctaText = 'Посмотреть',
   ctaLink = '/collections/all',
   backgroundColor = 'bg-secondary',
 }: EditorialBlockProps) {
